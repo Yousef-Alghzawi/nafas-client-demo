@@ -1,0 +1,285 @@
+/* ============================================================
+   Wujood Design System - Colors & Type
+   Brand source: WujoodCare Brand Manual V1.0
+   ============================================================ */
+
+/* ---- Fonts (Google Fonts CDN) ---------------------------------
+   Baloo 2          - Latin headlines  (ExtraBold / Bold / Medium)
+   Baloo Bhaijaan 2 - Arabic headlines (sister family, same DNA)
+   Rubik            - Latin + Arabic body copy (multi-script)
+   --------------------------------------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
+
+/* ============================================================
+   1. TOKENS - primitives
+   ============================================================ */
+:root {
+  /* --- Brand palette (warm + bright, lightly softened from manual values) --- */
+  --wujood-royal-purple:   #7547b8;   /* MAIN brand color - brighter, happier */
+  --wujood-medium-rose:    #d27cba;   /* secondary, warm complement */
+  --wujood-capri-blue:     #66c6dd;   /* third complement, calming */
+  --wujood-soft-lemon:     #fbef82;   /* DECORATIVE ONLY - never primary */
+
+  /* Original manual values, retained for reference / strong moments */
+  --wujood-purple-vivid:   #563293;
+  --wujood-rose-vivid:     #c060a5;
+  --wujood-blue-vivid:     #4eb2d0;
+  --wujood-lemon-vivid:    #f9f081;
+
+  /* --- Extended purple ramp (re-anchored on brighter #7547b8) --- */
+  --purple-50:  #f6f1fb;
+  --purple-100: #ecdff5;
+  --purple-200: #d6bdea;
+  --purple-300: #b793db;
+  --purple-400: #966bc9;
+  --purple-500: #8054c1;
+  --purple-600: #7547b8;   /* = wujood-royal-purple */
+  --purple-700: #5d3893;
+  --purple-800: #442a6c;
+  --purple-900: #2c1c4a;
+
+  /* --- Rose / blue / lemon ramps (warmer, brighter) --- */
+  --rose-50:    #fcf3f8;
+  --rose-100:   #f7dfee;
+  --rose-200:   #eebcdd;
+  --rose-300:   #e29bc8;
+  --rose-500:   #d27cba;   /* = wujood-medium-rose */
+  --rose-700:   #8d4f7b;
+
+  --blue-50:    #effaff;
+  --blue-100:   #d6f1fa;
+  --blue-200:   #b0e3f3;
+  --blue-300:   #88d2e8;
+  --blue-500:   #66c6dd;   /* = wujood-capri-blue */
+  --blue-700:   #3d8094;
+
+  --lemon-100:  #fffceb;
+  --lemon-300:  #fdf5b0;
+  --lemon-500:  #fbef82;   /* = wujood-soft-lemon */
+
+  /* --- Neutrals (warm-leaning, low-stim, white-dominant) --- */
+  --ink-900:    #1c1230;   /* deepest text on light bg, never pure black */
+  --ink-700:    #3b2d57;
+  --ink-500:    #6b5d83;
+  --ink-300:    #a59bb5;
+  --ink-200:    #ccc4d6;
+  --ink-100:    #e8e3ef;
+  --paper:      #fbfaf8;   /* default page surface - warm white */
+  --paper-warm: #f7f3ec;   /* warm beige paper for tonal variety */
+  --paper-cool: #f6f7f9;   /* cool white for anxious surfaces */
+  --white:      #ffffff;
+
+  /* --- Semantic colors --- */
+  --fg-1:  var(--ink-900);
+  --fg-2:  var(--ink-700);
+  --fg-3:  var(--ink-500);
+  --fg-on-brand: var(--white);
+
+  --bg-1:  var(--paper);
+  --bg-2:  var(--purple-50);
+  --bg-brand: var(--wujood-royal-purple);
+  --bg-brand-soft: var(--purple-100);
+
+  --line-1: var(--ink-100);
+  --line-2: var(--purple-100);
+  --line-strong: var(--purple-200);
+
+  --accent: var(--wujood-medium-rose);
+  --info:   var(--wujood-capri-blue);
+  --highlight: var(--wujood-soft-lemon);
+
+  /* No harsh red/green - Nafas avoids alert affordances.
+     If a non-clinical status hint is needed, use rose for gentle attention,
+     blue for "noted/saved", lemon as a soft decorative highlight only. */
+
+  /* --- Radii (rounded everything) --- */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-2xl: 48px;
+  --radius-pill: 999px;
+
+  /* --- Spacing scale (4-base, generous) --- */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 56px;
+  --space-16: 72px;
+  --space-20: 96px;
+  --space-24: 128px;
+
+  /* --- Shadows (soft, low-stim, brand-tinted) --- */
+  --shadow-xs: 0 1px 2px rgba(117, 71, 184, 0.06);
+  --shadow-sm: 0 2px 8px rgba(117, 71, 184, 0.08);
+  --shadow-md: 0 8px 24px rgba(117, 71, 184, 0.10);
+  --shadow-lg: 0 16px 48px rgba(117, 71, 184, 0.14);
+  --shadow-soft-glow: 0 0 40px rgba(210, 124, 186, 0.18);
+  --shadow-inner: inset 0 1px 2px rgba(28, 18, 48, 0.04);
+
+  /* --- Gradients (white-dominant, color-tinted) --- */
+  --grad-mist:   linear-gradient(180deg, rgba(117,71,184,0.10) 0%, #fbfaf8 70%);
+  --grad-bloom:  linear-gradient(180deg, rgba(210,124,186,0.10) 0%, #fbfaf8 70%);
+  --grad-cool:   linear-gradient(180deg, rgba(102,198,221,0.10) 0%, #fbfaf8 70%);
+  --grad-honey:  linear-gradient(180deg, rgba(251,239,130,0.40) 0%, #fbfaf8 70%);
+  --grad-aurora: linear-gradient(180deg, rgba(117,71,184,0.06) 0%, rgba(210,124,186,0.05) 50%, #fbfaf8 100%);
+  --grad-hero:   linear-gradient(135deg, #7547b8 0%, #9762c9 50%, #d27cba 100%);
+  --grad-calm:   linear-gradient(180deg, #fbfaf8 0%, #f4f1ed 100%);
+
+  /* --- Motion --- */
+  --ease-soft:   cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-breath: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:    160ms;
+  --dur-base:    280ms;
+  --dur-slow:    600ms;
+  --dur-breath:  4000ms; /* breathing-cycle animations */
+
+  /* --- Type families --- */
+  --font-display:    "Baloo 2", "Baloo Bhaijaan 2", system-ui, sans-serif;
+  --font-display-ar: "Baloo Bhaijaan 2", "Baloo 2", system-ui, sans-serif;
+  --font-body:       "Rubik", "Inter", system-ui, sans-serif;
+  --font-mono:       ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* ============================================================
+   2. TYPE SCALE - semantic
+   ============================================================ */
+
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 800;          /* ExtraBold per manual */
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--fg-1);
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(36px, 4.4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  color: var(--fg-1);
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.008em;
+  color: var(--fg-1);
+}
+
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--fg-1);
+}
+
+.h4 {
+  font-family: var(--font-display);
+  font-weight: 500;          /* Medium per manual (sub-headlines) */
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--fg-1);
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--wujood-capri-blue);
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--fg-2);
+}
+
+.p, p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+.p-sm {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--fg-3);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--fg-3);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--fg-2);
+}
+
+/* Italics - use Rubik italic for emphasis (Baloo 2 has no italic).
+   This is exactly the variation the manual flags as Rubik's advantage. */
+.em, em { font-style: italic; font-family: var(--font-body); }
+
+/* Arabic-direction helper */
+[dir="rtl"], .rtl {
+  font-family: var(--font-body);
+}
+[dir="rtl"] .h-display, [dir="rtl"] .h1, [dir="rtl"] .h2,
+[dir="rtl"] .h3, [dir="rtl"] .h4, .rtl-display {
+  font-family: var(--font-display-ar);
+  letter-spacing: 0;          /* no negative tracking in Arabic */
+}
+
+/* ============================================================
+   3. PRIMITIVES
+   ============================================================ */
+
+html, body {
+  background: var(--bg-1);
+  color: var(--fg-1);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--purple-600); text-underline-offset: 3px; }
+a:hover { color: var(--purple-500); }
+
+::selection { background: var(--lemon-300); color: var(--ink-900); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-1);
+  margin: var(--space-8) 0;
+}

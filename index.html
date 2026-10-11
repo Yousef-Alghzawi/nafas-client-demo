@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<title>Nafas by Wujood</title>
+<meta name="description" content="Explore Nafas by Wujood, an interactive Arabic and English student wellbeing app prototype.">
+<meta name="theme-color" content="#7547b8">
+<meta property="og:title" content="Nafas by Wujood">
+<meta property="og:description" content="An interactive student wellbeing app prototype.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="assets/logo-mark-purple.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/wujood-design-system-533207eb-da7e-40ba-adaa-a81e6fb54b59/colors_and_type.css">
+<script src="_ds/wujood-design-system-533207eb-da7e-40ba-adaa-a81e6fb54b59/_ds_bundle.js"></script>
+<style>
+html,body{margin:0;padding:0;height:100%;background:#e9e3f2;overscroll-behavior:none}
+*{box-sizing:border-box}
+a{color:var(--purple-600);text-decoration:none}
+a:hover{color:var(--purple-500)}
+button{font-family:var(--font-display);cursor:pointer;border:none;background:none}
+textarea,input{font-family:var(--font-body)}
+@keyframes drift1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(6%,-4%) scale(1.12)}100%{transform:translate(0,0) scale(1)}}
+@keyframes drift2{0%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-7%,5%) scale(0.94)}100%{transform:translate(0,0) scale(1.05)}}
+@keyframes halo{0%{transform:scale(1);opacity:.55}50%{transform:scale(1.14);opacity:.28}100%{transform:scale(1);opacity:.55}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes softin{from{opacity:0}to{opacity:1}}
+p,span,h1,h2,button,textarea,input,label{unicode-bidi:plaintext}
+</style>
+</helmet>
+
+<div dir="{{ dir }}" style="height:100dvh;min-height:100dvh;display:flex;align-items:stretch;justify-content:center;background:#e9e3f2;font-family:var(--font-body);color:var(--fg-1)">
+<div style="position:relative;width:100%;max-width:460px;height:100%;background:var(--paper);display:flex;flex-direction:column;overflow:hidden;isolation:isolate;box-shadow:0 0 60px rgba(117,71,184,.16)">
+
+<div style="position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden">
+<div style="position:absolute;top:-18%;inset-inline-start:-22%;width:78%;height:52%;border-radius:50%;filter:blur(48px);opacity:.5;background:{{ blobA }};animation:{{ blobAnimA }}"></div>
+<div style="position:absolute;bottom:-14%;inset-inline-end:-24%;width:82%;height:50%;border-radius:50%;filter:blur(54px);opacity:.42;background:{{ blobB }};animation:{{ blobAnimB }}"></div>
+</div>
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 24px 20px;display:flex;flex-direction:column">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="assets/logo-mark-purple.png" alt="" style="width:38px;height:38px;object-fit:contain;mix-blend-mode:multiply">
+      <div style="display:flex;flex-direction:column;line-height:1.1">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:17px;color:var(--purple-700)">نَفَس</span>
+        <span style="font-family:var(--font-body);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-300)">by Wujood</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:4px;padding:4px;background:#fff;border-radius:var(--radius-pill);box-shadow:var(--shadow-xs)">
+      <button onClick="{{ setAr }}" style="min-height:34px;padding:6px 13px;border-radius:var(--radius-pill);font-size:13px;font-family:var(--font-display-ar);background:{{ arBg }};color:{{ arFg }}">العربية</button>
+      <button onClick="{{ setEn }}" style="min-height:34px;padding:6px 13px;border-radius:var(--radius-pill);font-size:13px;font-family:var(--font-display);background:{{ enBg }};color:{{ enFg }}">English</button>
+    </div>
+  </div>
+
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:26px;padding:36px 0 20px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <h1 style="margin:0;font-size:34px;line-height:1.35;text-wrap:pretty;{{ arRole }}">خُذ نَفَسًا.<br>لا شيء عليك إثباته هنا.</h1>
+      <p style="margin:0;font-size:15.5px;line-height:1.6;max-width:34ch;text-wrap:pretty;{{ enRole }}">A quiet space for students carrying stress, burnout, and emotional overwhelm. Structured, private, and yours.</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:var(--radius-pill);background:rgba(255,255,255,.75);color:var(--purple-700);font-size:12.5px;font-family:var(--font-display-ar)">بلا اسم · No name</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:var(--radius-pill);background:rgba(255,255,255,.75);color:var(--purple-700);font-size:12.5px;font-family:var(--font-display-ar)">بلا تسجيل · No signup</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:var(--radius-pill);background:rgba(255,255,255,.75);color:var(--purple-700);font-size:12.5px;font-family:var(--font-display-ar)">بلا أثر · No trace</span>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:12px">
+    <button onClick="{{ goCheckin }}" style="width:100%;min-height:56px;border-radius:var(--radius-pill);background:linear-gradient(135deg,#5d3893,#8054c1 60%,#a75fb8);color:#fff;box-shadow:0 10px 26px rgba(117,71,184,.3);font-size:17px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:10px" style-active="transform:scale(.98)">
+      <span style="font-family:var(--font-display-ar);font-weight:700">ابدأ الآن</span>
+      <span style="font-family:var(--font-body);font-size:11.5px;opacity:.82;letter-spacing:.04em">Start now - nothing to fill in</span>
+    </button>
+    <button onClick="{{ goCode }}" style="width:100%;min-height:50px;border-radius:var(--radius-pill);background:#fff;color:var(--purple-600);box-shadow:inset 0 0 0 1.5px var(--purple-200);font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px" style-hover="background:var(--purple-50)">
+      <span style="font-family:var(--font-display-ar)">لديّ رمز جامعي</span>
+      <span style="color:var(--ink-300)">·</span>
+      <span style="font-family:var(--font-body);font-size:13px;color:var(--ink-500)">University code</span>
+    </button>
+    <button onClick="{{ goHome }}" style="align-self:center;min-height:44px;padding:8px 16px;font-family:var(--font-body);font-size:13px;color:var(--ink-300)">لديّ حساب · Sign in</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCode }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 24px 20px;display:flex;flex-direction:column;gap:22px">
+  <button onClick="{{ goLanding }}" style="align-self:flex-start;min-height:44px;padding:8px 4px;font-family:var(--font-body);font-size:14px;color:var(--ink-500)">← رجوع · Back</button>
+  <div style="display:flex;flex-direction:column;gap:9px">
+    <h2 style="margin:0;font-size:27px;line-height:1.35;{{ arRole }}">أدخل رمز جامعتك</h2>
+    <p style="margin:0;font-size:14.5px;line-height:1.6;{{ enRole }}">Enter your university code. It unlocks everything, free - and still asks nothing about you.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <input value="{{ code }}" onInput="{{ setCode }}" placeholder="KSU-2026" style="width:100%;min-height:60px;padding:16px 20px;border-radius:var(--radius-md);border:none;background:#fff;box-shadow:var(--shadow-inner),inset 0 0 0 1.5px var(--purple-100);font-size:20px;letter-spacing:.16em;text-align:center;color:var(--ink-900);font-family:var(--font-mono);text-transform:uppercase">
+    <sc-if value="{{ codeValid }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;align-items:center;gap:12px;padding:16px 18px;border-radius:var(--radius-lg);background:var(--blue-50);animation:rise 400ms var(--ease-out)">
+        <span style="width:34px;height:34px;flex:none;border-radius:50%;background:var(--blue-200);display:flex;align-items:center;justify-content:center;color:var(--blue-700);font-size:16px">✓</span>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:15px;color:var(--ink-900)">جامعة الملك سعود</span>
+          <span style="font-size:12.5px;color:var(--blue-700)">King Saud University · premium unlocked</span>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+  <div style="padding:20px;border-radius:var(--radius-lg);background:var(--purple-50);display:flex;flex-direction:column;gap:10px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--purple-600)">ما تراه جامعتك · What they see</span>
+    <p style="margin:0;font-family:var(--font-display-ar);font-size:15.5px;line-height:1.75;color:var(--ink-900)">جامعتك لا ترى اسمك، ولا كتاباتك، ولا فحوصك. تصلها اتجاهات عامة مجهولة فقط.</p>
+    <p style="margin:0;font-size:13.5px;line-height:1.65;color:var(--ink-500)">Your university never sees your name, your journal, or any single check-in. Only anonymous aggregate trends leave this device.</p>
+  </div>
+  <button onClick="{{ goCheckin }}" disabled="{{ codeInvalid }}" style="width:100%;min-height:56px;border-radius:var(--radius-pill);background:{{ codeCtaBg }};color:{{ codeCtaFg }};font-size:16.5px;font-family:var(--font-display-ar);font-weight:700;box-shadow:{{ codeCtaShadow }};margin-top:auto">متابعة · Continue</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCheckin }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 24px 20px;display:flex;flex-direction:column;gap:24px">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ stepBack }}" style="min-height:44px;padding:8px 4px;font-family:var(--font-body);font-size:14px;color:var(--ink-500)">← رجوع · Back</button>
+    <div style="display:flex;gap:7px">
+      <sc-for list="{{ stepDots }}" as="dot" hint-placeholder-count="4">
+        <span style="width:{{ dot.w }};height:7px;border-radius:var(--radius-pill);background:{{ dot.bg }};transition:all 280ms var(--ease-soft)"></span>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:22px;animation:rise 420ms var(--ease-out)">
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <h2 style="margin:0;font-size:28px;line-height:1.3;{{ arRole }}">كيف تصِل اليوم؟</h2>
+      <p style="margin:0;font-size:14.5px;{{ enRole }}">How are you arriving today?</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+      <sc-for list="{{ moodOptions }}" as="m" hint-placeholder-count="6">
+        <button onClick="{{ m.pick }}" style="min-height:88px;padding:16px 14px;border-radius:var(--radius-lg);background:{{ m.bg }};box-shadow:{{ m.ring }};display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:3px;text-align:start" style-hover="transform:translateY(-2px)">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:19px;color:{{ m.fg }}">{{ m.ar }}</span>
+          <span style="font-family:var(--font-body);font-size:12.5px;color:var(--ink-500)">{{ m.en }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:26px;animation:rise 420ms var(--ease-out)">
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <h2 style="margin:0;font-size:28px;line-height:1.3;{{ arRole }}">كم طاقتك الآن؟</h2>
+      <p style="margin:0;font-size:14.5px;{{ enRole }}">How much energy do you have?</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ energyDots }}" as="d" hint-placeholder-count="5">
+        <button onClick="{{ d.pick }}" style="min-height:56px;padding:14px 18px;border-radius:var(--radius-md);background:{{ d.bg }};box-shadow:{{ d.ring }};display:flex;align-items:center;gap:14px" style-hover="transform:translateY(-1px)">
+          <span style="width:34px;height:{{ d.h }};flex:none;border-radius:var(--radius-pill);background:{{ d.bar }}"></span>
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">{{ d.ar }}</span>
+          <span style="font-size:12.5px;color:var(--ink-500);margin-inline-start:auto">{{ d.en }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:26px;animation:rise 420ms var(--ease-out)">
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <h2 style="margin:0;font-size:28px;line-height:1.3;{{ arRole }}">ما مقدار التوتر الآن؟</h2>
+      <p style="margin:0;font-size:14.5px;{{ enRole }}">How stressed are you right now?</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ stressDots }}" as="d" hint-placeholder-count="5">
+        <button onClick="{{ d.pick }}" style="min-height:56px;padding:14px 18px;border-radius:var(--radius-md);background:{{ d.bg }};box-shadow:{{ d.ring }};display:flex;align-items:center;gap:14px" style-hover="transform:translateY(-1px)">
+          <span style="width:34px;height:{{ d.h }};flex:none;border-radius:var(--radius-pill);background:{{ d.bar }}"></span>
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">{{ d.ar }}</span>
+          <span style="font-size:12.5px;color:var(--ink-500);margin-inline-start:auto">{{ d.en }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:22px;animation:rise 420ms var(--ease-out)">
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <h2 style="margin:0;font-size:28px;line-height:1.3;{{ arRole }}">ماذا تحتاج الآن؟</h2>
+      <p style="margin:0;font-size:14.5px;{{ enRole }}">What do you need right now?</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:11px">
+      <sc-for list="{{ needOptions }}" as="n" hint-placeholder-count="4">
+        <button onClick="{{ n.pick }}" style="min-height:64px;padding:16px 18px;border-radius:var(--radius-lg);background:{{ n.bg }};box-shadow:{{ n.ring }};display:flex;align-items:baseline;gap:10px;text-align:start" style-hover="transform:translateY(-2px)">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:18px;color:var(--ink-900)">{{ n.ar }}</span>
+          <span style="font-size:12.5px;color:var(--ink-500)">{{ n.en }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSuggest }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 24px 20px;display:flex;flex-direction:column;justify-content:center;gap:22px;animation:softin 500ms var(--ease-out)">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--purple-600)">لك الآن · For you now</span>
+    <h2 style="margin:0;font-size:26px;line-height:1.35;{{ arRole }}">{{ arrivalLine }}</h2>
+    <p style="margin:0;font-size:14.5px;line-height:1.6;{{ enRole }}">{{ arrivalEn }}</p>
+  </div>
+  <div style="padding:24px;border-radius:var(--radius-2xl);background:linear-gradient(135deg,#5d3893 0%,#8054c1 55%,#c07cba 100%);color:#fff;box-shadow:0 14px 34px rgba(117,71,184,.28);display:flex;flex-direction:column;gap:14px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.72">التمرين المقترح · Suggested</span>
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:28px">{{ sugAr }}</span>
+      <span style="font-family:var(--font-body);font-size:14.5px;opacity:.86">{{ sugEn }}</span>
+    </div>
+    <p style="margin:0;font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.82)">{{ sugWhy }}</p>
+    <span style="display:flex;align-items:baseline;gap:7px;font-size:12.5px;opacity:.72">
+      <span>{{ sugMinAr }}</span><span dir="ltr">{{ sugMinEn }}</span>
+    </span>
+  </div>
+  <button onClick="{{ startFirstBreath }}" style="width:100%;min-height:56px;border-radius:var(--radius-pill);background:#fff;color:var(--purple-700);box-shadow:var(--shadow-md);font-family:var(--font-display-ar);font-weight:700;font-size:17px" style-hover="transform:translateY(-1px)">لنبدأ · Begin</button>
+  <button onClick="{{ goHome }}" style="align-self:center;min-height:44px;font-family:var(--font-body);font-size:13px;color:var(--ink-300)">ليس الآن · Not now</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBreath }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:26px 24px 34px;background:linear-gradient(180deg,rgba(117,71,184,.06),rgba(210,124,186,.05) 55%,var(--paper))">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ exitBreath }}" style="min-height:44px;padding:8px 4px;font-family:var(--font-body);font-size:13.5px;color:var(--ink-500)">إنهاء بلطف · End gently</button>
+    <span style="font-size:12.5px;color:var(--ink-300);font-family:var(--font-mono)">{{ cycleLabel }}</span>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">
+    <div style="position:relative;width:268px;height:268px;display:flex;align-items:center;justify-content:center">
+      <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(210,124,186,.34),rgba(210,124,186,0) 70%);animation:halo 8s var(--ease-breath) infinite"></div>
+      <div style="position:absolute;inset:26px;border-radius:50%;background:radial-gradient(circle,rgba(117,71,184,.26),rgba(117,71,184,0) 72%);animation:halo 8s var(--ease-breath) infinite 1.2s"></div>
+      <div style="position:relative;width:186px;height:186px;border-radius:50%;background:linear-gradient(140deg,#6d43ad,#9762c9 52%,#cc80bd);box-shadow:0 18px 44px rgba(117,71,184,.34);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#fff;transform:scale({{ orbScale }});transition:transform {{ orbDur }} cubic-bezier(0.45,0.05,0.55,0.95)">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:30px">{{ phaseAr }}</span>
+        <span style="font-family:var(--font-body);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.8">{{ phaseEn }}</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:52px;line-height:1;color:var(--purple-700)">{{ secsAr }}</span>
+      <span style="font-family:var(--font-display-ar);font-size:15px;color:var(--ink-500)">{{ breathNameAr }}</span>
+      <span style="font-size:12.5px;color:var(--ink-300);letter-spacing:.04em">{{ breathNameEn }}</span>
+    </div>
+  </div>
+  <p style="margin:0;text-align:center;font-size:13px;color:var(--ink-300);line-height:1.6">يمكنك التوقّف في أي لحظة. المحاولة تُحتسب.<br><span style="color:var(--ink-200)">You can stop anytime. An attempt still counts.</span></p>
+</div>
+</sc-if>
+
+<sc-if value="{{ isReward }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 24px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;text-align:center;animation:softin 600ms var(--ease-out)">
+  <img src="assets/emotions/peaceful.png" alt="" style="width:92px;height:92px;object-fit:contain;mix-blend-mode:multiply">
+  <div style="display:flex;flex-direction:column;gap:9px">
+    <h2 style="margin:0;font-size:27px;line-height:1.35;{{ arRole }}">{{ rewardTitleAr }}</h2>
+    <p style="margin:0;font-size:14.5px;line-height:1.6;{{ enRole }}">{{ rewardTitleEn }}</p>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:20px 30px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm)">
+    <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--purple-700)">{{ rewardBadgeAr }}</span>
+    <span style="font-size:12.5px;color:var(--ink-500)">{{ rewardBadgeEn }}</span>
+    <span style="margin-top:6px;padding:6px 14px;border-radius:var(--radius-pill);background:var(--lemon-300);color:var(--ink-900);font-size:12.5px;font-family:var(--font-display-ar)">{{ rewardPointsAr }}</span>
+  </div>
+  <button onClick="{{ goHome }}" style="width:100%;min-height:56px;border-radius:var(--radius-pill);background:linear-gradient(135deg,#5d3893,#8054c1 60%,#a75fb8);color:#fff;box-shadow:0 10px 26px rgba(117,71,184,.28);font-family:var(--font-display-ar);font-weight:700;font-size:17px">أكمِل إلى مساحتك · Continue</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 20px 20px;display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="assets/logo-mark-purple.png" alt="" style="width:34px;height:34px;object-fit:contain;mix-blend-mode:multiply">
+      <div style="display:flex;flex-direction:column;line-height:1.15">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--purple-700)">مساحتك</span>
+        <span style="font-size:11px;color:var(--ink-300);letter-spacing:.08em">YOUR SPACE</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button onClick="{{ goSupport }}" style="min-height:40px;padding:9px 14px;border-radius:var(--radius-pill);background:var(--blue-50);color:var(--blue-700);font-family:var(--font-display-ar);font-size:13px">تحدّث إلى شخص</button>
+      <button onClick="{{ goSettings }}" style="width:40px;height:40px;border-radius:50%;background:#fff;box-shadow:var(--shadow-xs);color:var(--ink-500);font-size:15px">⚙</button>
+    </div>
+  </div>
+
+  <button onClick="{{ goCheckin }}" style="text-align:start;padding:18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:14px" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-md)">
+    <sc-if value="{{ compCalm }}" hint-placeholder-val="{{ false }}">
+      <img src="assets/emotions/calm.png" alt="" style="width:62px;height:62px;flex:none;object-fit:contain;mix-blend-mode:multiply">
+    </sc-if>
+    <sc-if value="{{ compFocused }}" hint-placeholder-val="{{ false }}">
+      <img src="assets/emotions/focused.png" alt="" style="width:62px;height:62px;flex:none;object-fit:contain;mix-blend-mode:multiply">
+    </sc-if>
+    <sc-if value="{{ compSleepy }}" hint-placeholder-val="{{ false }}">
+      <img src="assets/emotions/sleepy.png" alt="" style="width:62px;height:62px;flex:none;object-fit:contain;mix-blend-mode:multiply">
+    </sc-if>
+    <sc-if value="{{ compTearful }}" hint-placeholder-val="{{ false }}">
+      <img src="assets/emotions/tearful.png" alt="" style="width:62px;height:62px;flex:none;object-fit:contain;mix-blend-mode:multiply">
+    </sc-if>
+    <sc-if value="{{ compMellow }}" hint-placeholder-val="{{ false }}">
+      <img src="assets/emotions/mellow.png" alt="" style="width:62px;height:62px;flex:none;object-fit:contain;mix-blend-mode:multiply">
+    </sc-if>
+    <div style="display:flex;flex-direction:column;gap:3px;flex:1">
+      <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--wujood-capri-blue)">الآن · right now</span>
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:20px;color:var(--ink-900)">{{ statusAr }}</span>
+      <span style="font-size:12.5px;color:var(--ink-500)">{{ statusEn }}</span>
+    </div>
+    <span style="color:var(--ink-200);font-size:20px">{{ chevron }}</span>
+  </button>
+
+  <div style="display:flex;gap:9px">
+    <sc-for list="{{ statusChips }}" as="c" hint-placeholder-count="3">
+      <div style="flex:1;padding:13px 12px;border-radius:var(--radius-md);background:{{ c.bg }};display:flex;flex-direction:column;gap:3px">
+        <span style="font-size:10.5px;color:var(--ink-500);letter-spacing:.04em">{{ c.en }}</span>
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:15px;color:{{ c.fg }}">{{ c.ar }}</span>
+      </div>
+    </sc-for>
+  </div>
+
+  <button onClick="{{ startSuggested }}" style="text-align:start;padding:22px;border-radius:var(--radius-xl);background:linear-gradient(135deg,#5d3893 0%,#8054c1 55%,#c07cba 100%);color:#fff;box-shadow:0 12px 30px rgba(117,71,184,.26);display:flex;flex-direction:column;gap:10px" style-hover="transform:translateY(-2px)">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.74">اقتراح اليوم · today's suggestion</span>
+    <span style="font-family:var(--font-display-ar);font-weight:700;font-size:25px">{{ sugAr }}</span>
+    <span style="font-size:13.5px;opacity:.86">{{ sugEn }}</span>
+    <span style="margin-top:4px;align-self:flex-start;padding:8px 16px;border-radius:var(--radius-pill);background:rgba(255,255,255,.18);font-size:13px;font-family:var(--font-display-ar);display:flex;align-items:baseline;gap:7px">
+      <span>ابدأ</span><span style="opacity:.5">·</span><span>{{ sugMinAr }}</span>
+    </span>
+  </button>
+
+  <sc-if value="{{ progressVisible }}" hint-placeholder-val="{{ true }}">
+  <div style="padding:18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:10px">
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:17px;color:var(--ink-900)">{{ streakAr }}</span>
+        <span style="font-size:12px;color:var(--ink-500)">{{ streakEn }}</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:17px;color:var(--purple-600)">{{ pointsAr }}</span>
+        <span style="font-size:12px;color:var(--ink-300)">Breath points</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:8px;border-radius:var(--radius-pill);background:var(--purple-50);overflow:hidden">
+        <div style="height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,#8054c1,#d27cba);width:{{ stageProgress }};transition:width 600ms var(--ease-soft)"></div>
+      </div>
+      <div style="display:flex;align-items:baseline;justify-content:space-between">
+        <span style="font-family:var(--font-display-ar);font-size:13.5px;color:var(--ink-700)">{{ stageAr }}</span>
+        <span style="font-size:11.5px;color:var(--ink-300)">{{ stageEn }}</span>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <button onClick="{{ goTrends }}" style="text-align:start;padding:18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px" style-hover="transform:translateY(-2px)">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;width:100%">
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">هذا الأسبوع</span>
+      <span style="font-size:11.5px;color:var(--ink-300)">This week · see trends {{ chevron }}</span>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:7px;width:100%;height:64px">
+      <sc-for list="{{ weekBars }}" as="b" hint-placeholder-count="7">
+        <span style="flex:1;height:{{ b.h }};border-radius:var(--radius-pill);background:{{ b.bg }}"></span>
+      </sc-for>
+    </div>
+  </button>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <sc-for list="{{ quickActions }}" as="q" hint-placeholder-count="4">
+      <button onClick="{{ q.go }}" style="min-height:74px;padding:15px;border-radius:var(--radius-lg);background:{{ q.bg }};box-shadow:var(--shadow-xs);display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:start" style-hover="transform:translateY(-2px)">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16.5px;color:var(--ink-900)">{{ q.ar }}</span>
+        <span style="font-size:12px;color:var(--ink-500)">{{ q.en }}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <sc-if value="{{ showAccountPrompt }}" hint-placeholder-val="{{ true }}">
+  <div style="padding:18px;border-radius:var(--radius-lg);background:var(--purple-50);display:flex;flex-direction:column;gap:12px">
+    <p style="margin:0;font-family:var(--font-display-ar);font-size:15px;line-height:1.7;color:var(--ink-900)">تريد الاحتفاظ بتقدّمك على جهاز آخر؟ أضِف بريدًا - اختياري تمامًا.</p>
+    <p style="margin:0;font-size:12.5px;color:var(--ink-500);line-height:1.6">Keep your progress across devices. Optional, and nothing is gated behind it.</p>
+    <div style="display:flex;gap:9px">
+      <button style="flex:1;min-height:46px;border-radius:var(--radius-pill);background:#fff;color:var(--purple-600);box-shadow:inset 0 0 0 1.5px var(--purple-200);font-size:14px;font-family:var(--font-display-ar)">أضِف بريدًا</button>
+      <button onClick="{{ dismissAccount }}" style="flex:1;min-height:46px;border-radius:var(--radius-pill);color:var(--ink-500);font-size:13.5px;font-family:var(--font-body)">ليس الآن · Not now</button>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isTrends }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 20px 20px;display:flex;flex-direction:column;gap:18px">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ goHome }}" style="min-height:44px;padding:8px 4px;font-size:14px;color:var(--ink-500);font-family:var(--font-body)">← رجوع · Back</button>
+    <div style="display:flex;gap:4px;padding:4px;background:#fff;border-radius:var(--radius-pill);box-shadow:var(--shadow-xs)">
+      <sc-for list="{{ rangeTabs }}" as="t" hint-placeholder-count="3">
+        <button onClick="{{ t.go }}" style="min-height:34px;padding:6px 13px;border-radius:var(--radius-pill);font-family:var(--font-display-ar);font-size:13px;background:{{ t.bg }};color:{{ t.fg }}">{{ t.ar }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <h2 style="margin:0;font-size:24px;{{ arRole }}">كيف كانت أيامك</h2>
+    <p style="margin:0;font-size:13.5px;{{ enRole }}">Your last 14 days - mood, energy, and stress. No scores, no diagnosis.</p>
+  </div>
+  <div style="padding:20px 16px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px">
+    <div style="display:flex;align-items:flex-end;gap:5px;height:132px">
+      <sc-for list="{{ trendBars }}" as="b" hint-placeholder-count="14">
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;height:100%">
+          <span style="width:100%;height:{{ b.h }};border-radius:var(--radius-pill);background:{{ b.bg }}"></span>
+          <span style="font-size:9px;color:var(--ink-200);font-family:var(--font-mono)">{{ b.d }}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;padding-top:4px">
+      <sc-for list="{{ legend }}" as="l" hint-placeholder-count="4">
+        <span style="display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--ink-500)">
+          <span style="width:10px;height:10px;border-radius:50%;background:{{ l.bg }}"></span>{{ l.ar }}
+        </span>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:flex;gap:10px">
+    <sc-for list="{{ trendStats }}" as="s" hint-placeholder-count="2">
+      <div style="flex:1;padding:16px;border-radius:var(--radius-lg);background:{{ s.bg }};display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:22px;color:{{ s.fg }}">{{ s.val }}</span>
+        <span style="font-family:var(--font-display-ar);font-size:13px;color:var(--ink-700)">{{ s.ar }}</span>
+        <span style="font-size:11.5px;color:var(--ink-300)">{{ s.en }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="padding:18px;border-radius:var(--radius-lg);background:var(--purple-50);display:flex;flex-direction:column;gap:8px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-600)">ملاحظة هادئة · a quiet note</span>
+    <p style="margin:0;font-family:var(--font-display-ar);font-size:15.5px;line-height:1.75;color:var(--ink-900)">توترك يرتفع عادةً في بداية الأسبوع. ربّما تضع تمرينًا قصيرًا يوم الأحد صباحًا.</p>
+    <p style="margin:0;font-size:12.5px;color:var(--ink-500);line-height:1.6">Your stress tends to rise early in the week. A short practice on Sunday morning might help.</p>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPractice }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 20px 20px;display:flex;flex-direction:column;gap:18px">
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <h2 style="margin:0;font-size:26px;{{ arRole }}">تمارين</h2>
+    <p style="margin:0;font-size:13.5px;{{ enRole }}">Short, guided, and always optional. Nothing here takes more than seven minutes.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--wujood-capri-blue)">تنفّس · breathing</span>
+    <sc-for list="{{ breathList }}" as="b" hint-placeholder-count="4">
+      <button onClick="{{ b.go }}" style="text-align:start;padding:17px 18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-xs);display:flex;align-items:center;gap:14px" style-hover="transform:translateY(-2px);box-shadow:var(--shadow-md)">
+        <span style="width:44px;height:44px;flex:none;border-radius:50%;background:{{ b.dot }};display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:11px;color:#fff">{{ b.tag }}</span>
+        <span style="display:flex;flex-direction:column;gap:2px;flex:1">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:17px;color:var(--ink-900)">{{ b.ar }}</span>
+          <span style="font-size:12.5px;color:var(--ink-500)">{{ b.en }}</span>
+        </span>
+        <span style="font-size:11.5px;color:var(--ink-300);font-family:var(--font-mono)">{{ b.min }}</span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--wujood-capri-blue)">تهدئة وتأريض · grounding</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <sc-for list="{{ groundList }}" as="g" hint-placeholder-count="4">
+        <button onClick="{{ g.go }}" style="min-height:96px;padding:16px;border-radius:var(--radius-lg);background:{{ g.bg }};box-shadow:var(--shadow-xs);display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:3px;text-align:start" style-hover="transform:translateY(-2px)">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">{{ g.ar }}</span>
+          <span style="font-size:11.5px;color:var(--ink-500);line-height:1.4">{{ g.en }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--wujood-capri-blue)">ألعاب هادئة · calm games</span>
+    <div style="display:flex;gap:10px;overflow-x:auto;padding-bottom:4px">
+      <sc-for list="{{ gameList }}" as="g" hint-placeholder-count="4">
+        <button style="flex:none;width:132px;min-height:104px;padding:16px;border-radius:var(--radius-lg);background:{{ g.bg }};display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:3px;text-align:start;box-shadow:var(--shadow-xs)" style-hover="transform:translateY(-2px)">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:15px;color:var(--ink-900)">{{ g.ar }}</span>
+          <span style="font-size:11px;color:var(--ink-500)">{{ g.en }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isGrounding }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 24px 20px;display:flex;flex-direction:column;gap:22px">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ goPractice }}" style="min-height:44px;padding:8px 4px;font-size:14px;color:var(--ink-500);font-family:var(--font-body)">← رجوع · Back</button>
+    <span style="font-family:var(--font-mono);font-size:12px;color:var(--ink-300)">5 · 4 · 3 · 2 · 1</span>
+  </div>
+  <sc-if value="{{ gActive }}" hint-placeholder-val="{{ true }}">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:30px">
+    <div style="display:flex;flex-direction:column;gap:10px;text-align:center">
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:74px;line-height:1;color:var(--purple-300)">{{ gNumAr }}</span>
+      <h2 style="margin:0;font-size:25px;line-height:1.35;{{ arRole }}">{{ gAr }}</h2>
+      <p style="margin:0;font-size:14px;{{ enRole }}">{{ gEn }}</p>
+    </div>
+    <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:12px">
+      <sc-for list="{{ gDots }}" as="d" hint-placeholder-count="5">
+        <button onClick="{{ d.tap }}" style="width:54px;height:54px;border-radius:50%;background:{{ d.bg }};box-shadow:{{ d.ring }};transition:all 280ms var(--ease-soft)" style-hover="transform:scale(1.06)"></button>
+      </sc-for>
+    </div>
+    <p style="margin:0;text-align:center;font-size:12.5px;color:var(--ink-300)">اضغط دائرة لكل شيء تلاحظه · Tap a circle for each thing you notice</p>
+  </div>
+  </sc-if>
+  <sc-if value="{{ gDone }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;text-align:center;animation:softin 500ms var(--ease-out)">
+    <img src="assets/emotions/calm.png" alt="" style="width:84px;height:84px;object-fit:contain;mix-blend-mode:multiply">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <h2 style="margin:0;font-size:25px;{{ arRole }}">عُدت إلى الغرفة</h2>
+      <p style="margin:0;font-size:14px;line-height:1.6;{{ enRole }}">You're back in the room. Nothing else is asked of you right now.</p>
+    </div>
+    <span style="padding:8px 16px;border-radius:var(--radius-pill);background:var(--lemon-300);font-family:var(--font-display-ar);font-size:13px;color:var(--ink-900)">+١٥ نقطة نَفَس</span>
+    <button onClick="{{ goHome }}" style="width:100%;min-height:54px;border-radius:var(--radius-pill);background:#fff;color:var(--purple-700);box-shadow:var(--shadow-md);font-family:var(--font-display-ar);font-weight:700;font-size:16.5px">إلى مساحتك · Back to your space</button>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{ isJournal }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 20px 20px;display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <h2 style="margin:0;font-size:26px;{{ arRole }}">دفترك</h2>
+    <p style="margin:0;font-size:13.5px;{{ enRole }}">Your journal</p>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;padding:13px 16px;border-radius:var(--radius-md);background:var(--blue-50)">
+    <span style="width:26px;height:26px;flex:none;border-radius:50%;background:var(--blue-200);display:flex;align-items:center;justify-content:center;color:var(--blue-700);font-size:12px">🔒</span>
+    <span style="font-family:var(--font-display-ar);font-size:13.5px;color:var(--blue-700);line-height:1.5">لا يراها أحد غيرك، ولا تُشارَك أبدًا · Only you can see this. Never shared.</span>
+  </div>
+
+  <sc-if value="{{ journalWriting }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:12px;padding:18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-sm);animation:rise 380ms var(--ease-out)">
+    <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:2px">
+      <sc-for list="{{ prompts }}" as="p" hint-placeholder-count="3">
+        <button onClick="{{ p.pick }}" style="flex:none;min-height:40px;padding:10px 14px;border-radius:var(--radius-pill);background:{{ p.bg }};color:{{ p.fg }};font-family:var(--font-display-ar);font-size:13px">{{ p.ar }}</button>
+      </sc-for>
+    </div>
+    <sc-if value="{{ promptChosen }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:0;font-family:var(--font-display-ar);font-size:16px;line-height:1.7;color:var(--purple-700)">{{ promptAr }}</p>
+    </sc-if>
+    <textarea value="{{ draft }}" onInput="{{ setDraft }}" placeholder="اكتب كما تشاء… · Write freely…" style="width:100%;min-height:150px;padding:14px;border-radius:var(--radius-md);border:none;background:var(--paper-warm);box-shadow:var(--shadow-inner);font-size:15px;line-height:1.75;color:var(--ink-900);resize:none"></textarea>
+    <div style="display:flex;gap:9px">
+      <button onClick="{{ saveEntry }}" style="flex:1;min-height:50px;border-radius:var(--radius-pill);background:linear-gradient(135deg,#5d3893,#8054c1 60%,#a75fb8);color:#fff;font-family:var(--font-display-ar);font-weight:700;font-size:15.5px;box-shadow:0 8px 20px rgba(117,71,184,.22)">احفظ · Save</button>
+      <button onClick="{{ cancelEntry }}" style="min-height:50px;padding:0 18px;border-radius:var(--radius-pill);color:var(--ink-500);font-size:13.5px;font-family:var(--font-body)">إلغاء</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ journalIdle }}" hint-placeholder-val="{{ true }}">
+  <button onClick="{{ newEntry }}" style="width:100%;min-height:56px;border-radius:var(--radius-pill);background:linear-gradient(135deg,#5d3893,#8054c1 60%,#a75fb8);color:#fff;box-shadow:0 10px 24px rgba(117,71,184,.24);font-family:var(--font-display-ar);font-weight:700;font-size:16.5px">اكتب شيئًا · New entry</button>
+  </sc-if>
+
+  <div style="display:flex;flex-direction:column;gap:11px">
+    <sc-for list="{{ entries }}" as="e" hint-placeholder-count="3">
+      <div style="padding:17px 18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-xs);display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+          <span style="font-family:var(--font-display-ar);font-size:13px;color:var(--purple-600)">{{ e.date }}</span>
+          <button onClick="{{ e.remove }}" style="min-height:32px;padding:4px 10px;border-radius:var(--radius-pill);color:var(--ink-300);font-size:12px;font-family:var(--font-body)" style-hover="background:var(--rose-50);color:var(--rose-700)">امسح · delete</button>
+        </div>
+        <sc-if value="{{ e.hasPrompt }}" hint-placeholder-val="{{ false }}">
+          <span style="font-family:var(--font-display-ar);font-size:13px;color:var(--ink-300)">{{ e.prompt }}</span>
+        </sc-if>
+        <p style="margin:0;font-size:14.5px;line-height:1.8;color:var(--ink-700)">{{ e.text }}</p>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSupport }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 20px 20px;display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ goHome }}" style="min-height:44px;padding:8px 4px;font-size:14px;color:var(--ink-500);font-family:var(--font-body)">← رجوع · Back</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <h2 style="margin:0;font-size:26px;{{ arRole }}">تحدّث إلى شخص</h2>
+    <p style="margin:0;font-size:13.5px;{{ enRole }}">Real people, real help. Free and student-priced options first.</p>
+  </div>
+  <div style="padding:20px;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(102,198,221,.22),rgba(117,71,184,.14));display:flex;flex-direction:column;gap:12px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-700)">خطوط الدعم · always open</span>
+    <sc-for list="{{ hotlines }}" as="h" hint-placeholder-count="2">
+      <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:var(--radius-md);background:rgba(255,255,255,.82)">
+        <div style="display:flex;flex-direction:column;gap:2px;flex:1">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:15px;color:var(--ink-900)">{{ h.ar }}</span>
+          <span style="font-size:12px;color:var(--ink-500)">{{ h.en }}</span>
+        </div>
+        <span style="padding:10px 16px;border-radius:var(--radius-pill);background:var(--purple-600);color:#fff;font-family:var(--font-mono);font-size:13px">{{ h.num }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <sc-for list="{{ filterGroups }}" as="fg" hint-placeholder-count="3">
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11px;color:var(--ink-300);letter-spacing:.06em">{{ fg.label }}</span>
+        <div style="display:flex;gap:8px;overflow-x:auto;padding-bottom:2px">
+          <sc-for list="{{ fg.chips }}" as="c" hint-placeholder-count="4">
+            <button onClick="{{ c.go }}" style="flex:none;min-height:40px;padding:10px 15px;border-radius:var(--radius-pill);background:{{ c.bg }};color:{{ c.fg }};box-shadow:{{ c.ring }};font-family:var(--font-display-ar);font-size:13px">{{ c.ar }}</button>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:11px">
+    <sc-for list="{{ providers }}" as="p" hint-placeholder-count="4">
+      <div style="padding:17px 18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-xs);display:flex;flex-direction:column;gap:9px">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:10px">
+          <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16.5px;color:var(--ink-900)">{{ p.ar }}</span>
+          <span style="padding:5px 11px;border-radius:var(--radius-pill);background:{{ p.priceBg }};color:{{ p.priceFg }};font-size:11.5px;font-family:var(--font-display-ar);white-space:nowrap">{{ p.price }}</span>
+        </div>
+        <span style="font-size:12.5px;color:var(--ink-500)">{{ p.en }}</span>
+        <div style="display:flex;align-items:center;gap:9px;flex-wrap:wrap">
+          <span style="font-size:11.5px;color:var(--ink-300)">{{ p.meta }}</span>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <p style="margin:0;font-size:11.5px;color:var(--ink-300);line-height:1.7;text-align:center">نَفَس ليست عيادة ولا بديلًا عن العلاج. في الحالات الطارئة اتصل بخط الدعم.<br>Nafas is not a clinic and not a replacement for care.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:2;flex:1;overflow-y:auto;padding:26px 20px 20px;display:flex;flex-direction:column;gap:16px">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ goHome }}" style="min-height:44px;padding:8px 4px;font-size:14px;color:var(--ink-500);font-family:var(--font-body)">← رجوع · Back</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    <h2 style="margin:0;font-size:26px;{{ arRole }}">هادئ بشكل افتراضي</h2>
+    <p style="margin:0;font-size:13.5px;{{ enRole }}">Quiet by default. Change only what you want to change.</p>
+  </div>
+  <div style="padding:16px 18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-xs);display:flex;align-items:center;justify-content:space-between;gap:12px">
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">اللغة</span>
+      <span style="font-size:12px;color:var(--ink-500)">Interface language</span>
+    </div>
+    <div style="display:flex;gap:4px;padding:4px;background:var(--purple-50);border-radius:var(--radius-pill)">
+      <button onClick="{{ setAr }}" style="min-height:38px;padding:8px 14px;border-radius:var(--radius-pill);font-family:var(--font-display-ar);font-size:13px;background:{{ arBg }};color:{{ arFg }}">العربية</button>
+      <button onClick="{{ setEn }}" style="min-height:38px;padding:8px 14px;border-radius:var(--radius-pill);font-family:var(--font-display);font-size:13px;background:{{ enBg }};color:{{ enFg }}">English</button>
+    </div>
+  </div>
+  <sc-for list="{{ settingRows }}" as="r" hint-placeholder-count="4">
+    <button onClick="{{ r.toggle }}" style="text-align:start;padding:16px 18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-xs);display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%" style-hover="transform:translateY(-1px)">
+      <span style="display:flex;flex-direction:column;gap:2px">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">{{ r.ar }}</span>
+        <span style="font-size:12px;color:var(--ink-500)">{{ r.en }}</span>
+      </span>
+      <span style="width:52px;height:30px;flex:none;border-radius:var(--radius-pill);background:{{ r.trackBg }};position:relative;transition:background 280ms var(--ease-soft)">
+        <span style="position:absolute;top:3px;inset-inline-start:{{ r.knob }};width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:var(--shadow-xs);transition:inset-inline-start 280ms var(--ease-soft)"></span>
+      </span>
+    </button>
+  </sc-for>
+  <div style="padding:20px;border-radius:var(--radius-lg);background:var(--purple-50);display:flex;flex-direction:column;gap:10px">
+    <span style="font-family:var(--font-display);font-weight:600;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--purple-600)">خصوصيتك · privacy</span>
+    <p style="margin:0;font-family:var(--font-display-ar);font-size:15px;line-height:1.75;color:var(--ink-900)">مجهول افتراضيًا. كل ما تكتبه يبقى على جهازك. جامعتك ترى اتجاهات عامة فقط.</p>
+    <p style="margin:0;font-size:12.5px;color:var(--ink-500);line-height:1.65">Anonymous by default. Everything you write stays on this device. Universities see anonymous trends only.</p>
+  </div>
+  <button style="text-align:start;padding:16px 18px;border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-xs);display:flex;flex-direction:column;gap:2px" style-hover="transform:translateY(-1px)">
+    <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--ink-900)">بريد اختياري</span>
+    <span style="font-size:12px;color:var(--ink-500)">Optional email - carry progress to another device</span>
+  </button>
+  <button onClick="{{ wipe }}" style="text-align:start;padding:16px 18px;border-radius:var(--radius-lg);background:var(--rose-50);display:flex;flex-direction:column;gap:2px" style-hover="transform:translateY(-1px)">
+    <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;color:var(--rose-700)">امسح كل شيء</span>
+    <span style="font-size:12px;color:var(--rose-700);opacity:.75">Erase everything and leave no trace</span>
+  </button>
+  <p style="margin:0;font-size:11.5px;color:var(--ink-300);line-height:1.7;text-align:center">نَفَس منصة دعم عاطفي ورفاه. لا تُقدّم تشخيصًا ولا علاجًا ولا خدمات طارئة.<br>Nafas is a wellness and emotional support tool - not diagnosis, treatment, or emergency care.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{ showPanicBtn }}" hint-placeholder-val="{{ true }}">
+<button onClick="{{ openPanic }}" style="position:relative;z-index:20;flex:none;margin:0 16px 10px;min-height:54px;padding:10px 20px;border-radius:var(--radius-pill);background:linear-gradient(135deg,#c07cba,#8054c1);color:#fff;box-shadow:0 8px 22px rgba(192,96,165,.26);display:flex;align-items:center;justify-content:center;gap:10px" style-hover="transform:translateY(-1px)" style-active="transform:scale(.99)">
+  <span style="font-family:var(--font-display-ar);font-weight:700;font-size:16px;line-height:1.2">أرضني الآن</span>
+  <span style="opacity:.5">·</span>
+  <span dir="ltr" style="font-family:var(--font-body);font-size:10.5px;letter-spacing:.12em;opacity:.85">GROUND ME NOW</span>
+</button>
+</sc-if>
+
+<sc-if value="{{ showNav }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;z-index:20;margin:0 16px 16px;padding:6px;background:rgba(255,255,255,.88);backdrop-filter:blur(20px);border-radius:var(--radius-pill);display:flex;gap:2px;box-shadow:0 6px 22px rgba(117,71,184,.16)">
+  <sc-for list="{{ navTabs }}" as="t" hint-placeholder-count="3">
+    <button onClick="{{ t.go }}" style="flex:1;min-height:50px;border-radius:var(--radius-pill);background:{{ t.bg }};color:{{ t.fg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;transition:all 240ms var(--ease-soft)">
+      <span style="font-family:var(--font-display-ar);font-weight:700;font-size:15px">{{ t.ar }}</span>
+      <span style="font-family:var(--font-body);font-size:9.5px;letter-spacing:.1em;opacity:.7">{{ t.en }}</span>
+    </button>
+  </sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ panicOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:0;z-index:60;background:linear-gradient(180deg,#2c1c4a,#442a6c 55%,#5d3893);color:#fff;display:flex;flex-direction:column;padding:30px 26px 34px;animation:softin 500ms var(--ease-out)">
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <button onClick="{{ closePanic }}" style="min-height:44px;padding:8px 4px;font-family:var(--font-body);font-size:13.5px;color:rgba(255,255,255,.72)">أنا بخير الآن · I'm okay now</button>
+  </div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;text-align:center">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h2 style="margin:0;font-family:var(--font-display-ar);font-weight:700;font-size:29px;line-height:1.35">{{ panicAr }}</h2>
+      <p style="margin:0;font-size:14px;color:rgba(255,255,255,.7)">{{ panicEn }}</p>
+    </div>
+    <div style="position:relative;width:216px;height:216px;display:flex;align-items:center;justify-content:center">
+      <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,rgba(210,124,186,.4),rgba(210,124,186,0) 70%);animation:halo 10s var(--ease-breath) infinite"></div>
+      <div style="width:150px;height:150px;border-radius:50%;background:linear-gradient(140deg,rgba(255,255,255,.94),rgba(226,155,200,.9));box-shadow:0 0 60px rgba(210,124,186,.4);display:flex;align-items:center;justify-content:center;transform:scale({{ orbScale }});transition:transform {{ orbDur }} cubic-bezier(0.45,0.05,0.55,0.95)">
+        <span style="font-family:var(--font-display-ar);font-weight:700;font-size:26px;color:var(--purple-800)">{{ phaseAr }}</span>
+      </div>
+    </div>
+    <span style="font-family:var(--font-display-ar);font-weight:700;font-size:44px;line-height:1;color:rgba(255,255,255,.9)">{{ secsAr }}</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px">
+    <button onClick="{{ goGroundingFromPanic }}" style="width:100%;min-height:52px;border-radius:var(--radius-pill);background:rgba(255,255,255,.14);color:#fff;font-family:var(--font-display-ar);font-weight:700;font-size:15.5px;display:flex;align-items:center;justify-content:center;gap:9px">
+      <span>اسمِّ ما حولك</span><span style="opacity:.45">·</span><span style="letter-spacing:.06em">٥-٤-٣-٢-١</span>
+    </button>
+    <button onClick="{{ goSupportFromPanic }}" style="width:100%;min-height:52px;border-radius:var(--radius-pill);background:#fff;color:var(--purple-700);font-family:var(--font-display-ar);font-weight:700;font-size:15.5px">تحدّث إلى شخص الآن · Talk to someone</button>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:460,&quot;height&quot;:900},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;landing&quot;,&quot;code&quot;,&quot;checkin&quot;,&quot;suggest&quot;,&quot;home&quot;,&quot;trends&quot;,&quot;practice&quot;,&quot;grounding&quot;,&quot;journal&quot;,&quot;support&quot;,&quot;settings&quot;,&quot;panic&quot;],&quot;default&quot;:&quot;landing&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;defaultDir&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;rtl&quot;,&quot;ltr&quot;],&quot;default&quot;:&quot;rtl&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Review&quot;},&quot;showProgress&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;},&quot;calmMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behaviour&quot;}}">
+class Component extends DCLogic {
+  moods = [
+    { key: 'calm',        ar: 'هادئ',   en: 'Calm',       comp: 'calm',    tone: 'settled' },
+    { key: 'focused',     ar: 'مُركّز',  en: 'Focused',    comp: 'focused', tone: 'settled' },
+    { key: 'tired',       ar: 'متعب',   en: 'Tired',      comp: 'sleepy',  tone: 'tired' },
+    { key: 'overwhelmed', ar: 'مُثقَل',  en: 'Overwhelmed',comp: 'tearful', tone: 'overwhelmed' },
+    { key: 'anxious',     ar: 'قلِق',    en: 'Anxious',    comp: 'focused', tone: 'anxious' },
+    { key: 'burnt',       ar: 'مُنهَك',  en: 'Burned out', comp: 'mellow',  tone: 'tired' }
+  ];
+  needs = [
+    { key: 'calm',  ar: 'أن أهدأ',            en: 'To calm down' },
+    { key: 'focus', ar: 'أن أُركّز',           en: 'To focus' },
+    { key: 'rest',  ar: 'أن أرتاح',           en: 'To rest' },
+    { key: 'out',   ar: 'أن أُفرِغ ما بداخلي',  en: 'To let it out' }
+  ];
+  breathings = [
+    { key: '478',  ar: 'تنفّس ٤-٧-٨',        en: '4-7-8 breath',       min: '٣ د',  tag: '4·7·8', dot: 'linear-gradient(140deg,#7547b8,#a75fb8)' },
+    { key: 'box',  ar: 'تنفّس الصندوق',       en: 'Box breathing',      min: '٤ د',  tag: '4·4·4', dot: 'linear-gradient(140deg,#66c6dd,#7547b8)' },
+    { key: 'exam', ar: 'إعادة ضبط قبل اختبار', en: 'Exam reset',         min: '٢ د',  tag: '2·min', dot: 'linear-gradient(140deg,#d27cba,#8054c1)' },
+    { key: 'sleep',ar: 'هدوء قبل النوم',      en: 'Sleep wind down',    min: '٧ د',  tag: 'slow',  dot: 'linear-gradient(140deg,#5d3893,#66c6dd)' }
+  ];
+  grounds = [
+    { key: 'g54321', ar: '٥-٤-٣-٢-١', en: 'Name what is around you',  bg: 'var(--purple-50)' },
+    { key: 'body',   ar: 'مسح الجسد',  en: 'Body scan, head to feet',  bg: 'var(--blue-50)' },
+    { key: 'thought',ar: 'إفراغ الأفكار', en: 'Thought release',       bg: 'var(--rose-50)' },
+    { key: 'worry',  ar: 'موقف القلق',  en: 'Worry parking lot',       bg: 'var(--lemon-100)' }
+  ];
+  games = [
+    { ar: 'انسياب السحاب', en: 'Cloud drift',   bg: 'var(--blue-50)' },
+    { ar: 'حصى التركيز',   en: 'Focus pebbles', bg: 'var(--purple-50)' },
+    { ar: 'حديقة المشاعر', en: 'Emotion garden',bg: 'var(--rose-50)' },
+    { ar: 'مؤقّت الهدوء',  en: 'Calm timer',    bg: 'var(--lemon-100)' }
+  ];
+  promptLib = [
+    { ar: 'ما الذي يُثقلك؟', full: 'ما الذي يُثقلك اليوم؟', en: 'What is weighing on you today?' },
+    { ar: 'ما ينتظر الغد؟',  full: 'ما الذي يمكن أن ينتظر إلى الغد؟', en: 'What can wait until tomorrow?' },
+    { ar: 'ما أحسنتَ فعله؟', full: 'ما شيء أحسنتَ فعله اليوم؟', en: 'What is one thing you did well?' }
+  ];
+  gSteps = [
+    { n: 5, numAr: '٥', ar: 'خمسة أشياء تراها',     en: 'Five things you can see' },
+    { n: 4, numAr: '٤', ar: 'أربعة أشياء تلمسها',   en: 'Four things you can touch' },
+    { n: 3, numAr: '٣', ar: 'ثلاثة أصوات تسمعها',   en: 'Three sounds you can hear' },
+    { n: 2, numAr: '٢', ar: 'رائحتان تشمّهما',      en: 'Two things you can smell' },
+    { n: 1, numAr: '١', ar: 'شيء واحد تتذوّقه',     en: 'One thing you can taste' }
+  ];
+  hotlineData = [
+    { ar: 'خط الدعم النفسي - السعودية', en: 'National mental health line · 24/7', num: '937' },
+    { ar: 'الخط الساخن - مصر',          en: 'Egypt support line · 24/7',         num: '16328' }
+  ];
+  providerData = [
+    { ar: 'د. ليان الحربي',        en: 'Psychologist · anxiety, academic stress', meta: 'عربي · English · online',      price: 'خصم طلابي', band: 'student' },
+    { ar: 'مركز سند للدعم النفسي', en: 'Counselling NGO · group and one-to-one',  meta: 'عربي · in person · Riyadh',    price: 'مجاني',      band: 'free' },
+    { ar: 'د. عمر فهمي',           en: 'Psychiatrist · burnout, sleep',           meta: 'عربي · English · online',      price: 'تحت ٥٠$',   band: 'paid' },
+    { ar: 'دائرة الدعم بين الطلاب', en: 'Peer support circle · weekly, anonymous', meta: 'عربي · online · Sundays 8pm', price: 'مجاني',      band: 'free' }
+  ];
+  trendData = [
+    { d: '30', v: 4, m: 'anxious' }, { d: '31', v: 3, m: 'tired' }, { d: '01', v: 5, m: 'overwhelmed' },
+    { d: '02', v: 4, m: 'anxious' }, { d: '03', v: 3, m: 'tired' }, { d: '04', v: 2, m: 'calm' },
+    { d: '05', v: 2, m: 'calm' },    { d: '06', v: 4, m: 'anxious' }, { d: '07', v: 5, m: 'overwhelmed' },
+    { d: '08', v: 3, m: 'tired' },   { d: '09', v: 3, m: 'focused' }, { d: '10', v: 2, m: 'calm' },
+    { d: '11', v: 2, m: 'focused' }, { d: '12', v: 3, m: 'overwhelmed' }
+  ];
+
+  state = {
+    screen: this.props.startScreen || 'landing',
+    dir: this.props.defaultDir || 'rtl',
+    step: 1,
+    mood: 'overwhelmed',
+    energy: 2,
+    stress: 4,
+    need: 'calm',
+    code: '',
+    points: 140,
+    streak: 5,
+    firstDone: false,
+    accountPrompt: true,
+    panic: false,
+    breathType: '478',
+    phaseIdx: 0,
+    cycle: 1,
+    cycleTarget: 4,
+    secs: 4,
+    scale: 0.86,
+    dur: 4,
+    range: 'week',
+    gStep: 0,
+    gCount: 0,
+    gDone: false,
+    journalMode: 'idle',
+    draft: '',
+    prompt: null,
+    entries: [
+      { id: 1, date: 'اليوم · today', prompt: 'ما الذي يُثقلك اليوم؟', text: 'الاختبار أخذ منّي أكثر مما توقّعت. سأنام مبكرًا الليلة ولن أفتح الملخّصات.' },
+      { id: 2, date: 'أمس · yesterday', prompt: null, text: 'كتبت قائمة بما يمكن أن ينتظر. صارت أقصر مما ظننت.' },
+      { id: 3, date: 'قبل ٣ أيام · 3 days ago', prompt: 'ما شيء أحسنتَ فعله اليوم؟', text: 'طلبت تمديدًا صغيرًا. لم يكن الأمر مخيفًا كما تخيّلت.' }
+    ],
+    filters: { country: 'sa', type: 'all', budget: 'free' },
+    toggles: { sound: true, reminder: false, motion: true, anon: true }
+  };
+
+  componentDidUpdate(prev) {
+    if (prev.startScreen !== this.props.startScreen && this.props.startScreen) {
+      if (this.props.startScreen === 'panic') { this.setState({ screen: 'home' }); this.runBreath('panic', 20, true); }
+      else this.go(this.props.startScreen);
+    }
+    if (prev.defaultDir !== this.props.defaultDir && this.props.defaultDir) {
+      this.setState({ dir: this.props.defaultDir });
+    }
+  }
+  componentWillUnmount() { this.stopBreath(); }
+
+  ar(n) { return String(n).replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[+d]); }
+  moodDef(key) { return this.moods.find(m => m.key === key) || this.moods[0]; }
+
+  phases(type) {
+    if (type === 'box') return [
+      { ar: 'شَهيق', en: 'Inhale', sec: 4, scale: 1.16 }, { ar: 'احتباس', en: 'Hold', sec: 4, scale: 1.16 },
+      { ar: 'زَفير', en: 'Exhale', sec: 4, scale: 0.84 }, { ar: 'احتباس', en: 'Hold', sec: 4, scale: 0.84 }
+    ];
+    if (type === 'panic') return [
+      { ar: 'شَهيق', en: 'Inhale', sec: 4, scale: 1.18 }, { ar: 'زَفير', en: 'Exhale', sec: 6, scale: 0.82 }
+    ];
+    if (type === 'sleep') return [
+      { ar: 'شَهيق', en: 'Inhale', sec: 4, scale: 1.16 }, { ar: 'زَفير', en: 'Exhale', sec: 8, scale: 0.8 }
+    ];
+    return [
+      { ar: 'شَهيق', en: 'Inhale', sec: 4, scale: 1.2 }, { ar: 'احتباس', en: 'Hold', sec: 7, scale: 1.2 },
+      { ar: 'زَفير', en: 'Exhale', sec: 8, scale: 0.8 }
+    ];
+  }
+  breathMeta(type) {
+    const b = this.breathings.find(x => x.key === type);
+    if (b) return b;
+    return { ar: 'تنفّس هادئ', en: 'Calm breath' };
+  }
+
+  stopBreath() { if (this.timer) { clearInterval(this.timer); this.timer = null; } }
+  runBreath(type, target, panic) {
+    this.stopBreath();
+    const p = this.phases(type);
+    this.setState({
+      screen: panic ? this.state.screen : 'breath', panic: !!panic, breathType: type,
+      phaseIdx: 0, cycle: 1, cycleTarget: target, secs: p[0].sec, scale: p[0].scale, dur: p[0].sec
+    });
+    this.timer = setInterval(() => {
+      const s = this.state, ph = this.phases(s.breathType);
+      if (s.secs > 1) { this.setState({ secs: s.secs - 1 }); return; }
+      let idx = s.phaseIdx + 1, cycle = s.cycle;
+      if (idx >= ph.length) { idx = 0; cycle += 1; }
+      if (cycle > s.cycleTarget) { this.stopBreath(); this.finishBreath(); return; }
+      this.setState({ phaseIdx: idx, cycle, secs: ph[idx].sec, scale: ph[idx].scale, dur: ph[idx].sec });
+    }, 1000);
+  }
+  finishBreath() {
+    this.setState(s => ({ screen: 'reward', panic: false, points: s.points + 20, firstDone: true }));
+  }
+
+  go(screen) { this.stopBreath(); this.setState({ screen, panic: false }); }
+
+  suggestion() {
+    const s = this.state;
+    if (s.need === 'rest' || s.mood === 'tired' || s.mood === 'burnt')
+      return { key: 'sleep', ar: 'هدوء قبل النوم', en: 'Sleep wind down', minAr: '٧ دقائق', minEn: '7 min', why: 'طاقتك منخفضة اليوم. لن نضيف شيئًا - سنُبطئ فقط.' };
+    if (s.need === 'focus' || s.mood === 'focused')
+      return { key: 'box', ar: 'تنفّس الصندوق', en: 'Box breathing', minAr: '٤ دقائق', minEn: '4 min', why: 'أربع عدّات متساوية تُعيد الانتباه إلى شيء واحد.' };
+    if (s.need === 'out')
+      return { key: 'journal', ar: 'أفرِغ على الورق', en: 'Write it out', minAr: '٥ دقائق', minEn: '5 min', why: 'ما يخرج إلى الورق يصير أخفّ في الرأس.' };
+    return { key: '478', ar: 'تنفّس ٤-٧-٨', en: '4-7-8 breath', minAr: '٣ دقائق', minEn: '3 min', why: 'زَفير أطول من الشهيق يُهدّئ الجسد قبل أن يُهدّئ الرأس.' };
+  }
+  startSuggested = () => {
+    const sug = this.suggestion();
+    if (sug.key === 'journal') { this.go('journal'); this.setState({ journalMode: 'writing', prompt: this.promptLib[0] }); return; }
+    this.runBreath(sug.key, 4, false);
+  };
+
+  stage() {
+    const p = this.state.points;
+    if (p < 60) return { ar: 'بذرة', en: 'Seed → Sprout', next: 60, from: 0 };
+    if (p < 180) return { ar: 'غرسة', en: 'Sprout → Bloom', next: 180, from: 60 };
+    if (p < 400) return { ar: 'إزهار', en: 'Bloom → Flourish', next: 400, from: 180 };
+    if (p < 800) return { ar: 'ازدهار', en: 'Flourish → Thrive', next: 800, from: 400 };
+    return { ar: 'اكتمال', en: 'Thrive', next: 800, from: 800 };
+  }
+  moodColor(key) {
+    return { calm: '#b0e3f3', focused: '#b793db', tired: '#eebcdd', overwhelmed: '#8054c1', anxious: '#d27cba', burnt: '#5d3893' }[key] || '#b793db';
+  }
+
+  renderVals() {
+    const s = this.state, sc = s.screen, sug = this.suggestion(), st = this.stage();
+    const md = this.moodDef(s.mood), ph = this.phases(s.breathType), cur = ph[s.phaseIdx] || ph[0];
+    const rtl = s.dir === 'rtl';
+    const sel = (on, base) => ({ bg: on ? 'var(--purple-50)' : (base || '#fff'), ring: on ? 'inset 0 0 0 2px var(--purple-400)' : 'var(--shadow-xs)' });
+    const chip = on => ({ bg: on ? 'var(--purple-600)' : '#fff', fg: on ? '#fff' : 'var(--ink-700)', ring: on ? 'none' : 'inset 0 0 0 1.5px var(--purple-100)' });
+    const motion = this.props.calmMotion === true ? 'none' : null;
+    const appScreens = ['home', 'trends', 'practice', 'grounding', 'journal', 'support', 'settings'];
+
+    return {
+      dir: s.dir,
+      arRole: rtl
+        ? 'font-family:var(--font-display-ar);font-weight:700;color:var(--ink-900)'
+        : 'font-family:var(--font-display-ar);font-weight:500;font-size:15px;line-height:1.7;color:var(--ink-500)',
+      enRole: rtl
+        ? 'font-family:var(--font-body);font-weight:400;color:var(--ink-500)'
+        : 'font-family:var(--font-display);font-weight:700;font-size:26px;line-height:1.32;color:var(--ink-900)',
+      blobA: 'radial-gradient(circle,' + this.moodColor(s.mood) + ',rgba(255,255,255,0) 70%)',
+      blobB: 'radial-gradient(circle,rgba(210,124,186,.7),rgba(255,255,255,0) 70%)',
+      blobAnimA: motion || 'drift1 26s var(--ease-breath) infinite',
+      blobAnimB: motion || 'drift2 32s var(--ease-breath) infinite',
+      chevron: rtl ? '‹' : '›',
+
+      isLanding: sc === 'landing', isCode: sc === 'code', isCheckin: sc === 'checkin', isSuggest: sc === 'suggest',
+      isBreath: sc === 'breath', isReward: sc === 'reward', isHome: sc === 'home', isTrends: sc === 'trends',
+      isPractice: sc === 'practice', isGrounding: sc === 'grounding', isJournal: sc === 'journal',
+      isSupport: sc === 'support', isSettings: sc === 'settings',
+      showNav: appScreens.indexOf(sc) >= 0, panicOpen: s.panic,
+      showPanicBtn: !s.panic && sc !== 'breath' && sc !== 'grounding',
+      panicBottom: appScreens.indexOf(sc) >= 0 ? '94px' : '26px',
+
+      arBg: rtl ? 'var(--purple-600)' : 'transparent', arFg: rtl ? '#fff' : 'var(--ink-500)',
+      enBg: rtl ? 'transparent' : 'var(--purple-600)', enFg: rtl ? 'var(--ink-500)' : '#fff',
+      setAr: () => this.setState({ dir: 'rtl' }),
+      setEn: () => this.setState({ dir: 'ltr' }),
+
+      goLanding: () => this.go('landing'), goCode: () => this.go('code'),
+      goCheckin: () => { this.stopBreath(); this.setState({ screen: 'checkin', step: 1, panic: false }); },
+      goHome: () => this.go('home'), goTrends: () => this.go('trends'), goPractice: () => this.go('practice'),
+      goJournal: () => this.go('journal'), goSupport: () => this.go('support'), goSettings: () => this.go('settings'),
+
+      code: s.code,
+      setCode: e => this.setState({ code: e.target.value }),
+      codeValid: s.code.trim().length >= 4,
+      codeInvalid: s.code.trim().length < 4,
+      codeCtaBg: s.code.trim().length >= 4 ? 'linear-gradient(135deg,#5d3893,#8054c1 60%,#a75fb8)' : 'var(--ink-100)',
+      codeCtaFg: s.code.trim().length >= 4 ? '#fff' : 'var(--ink-300)',
+      codeCtaShadow: s.code.trim().length >= 4 ? '0 10px 26px rgba(117,71,184,.28)' : 'none',
+
+      isStep1: s.step === 1, isStep2: s.step === 2, isStep3: s.step === 3, isStep4: s.step === 4,
+      stepBack: () => s.step > 1 ? this.setState({ step: s.step - 1 }) : this.go('landing'),
+      stepDots: [1, 2, 3, 4].map(i => ({ w: i === s.step ? '22px' : '7px', bg: i <= s.step ? 'var(--purple-500)' : 'var(--purple-100)' })),
+      moodOptions: this.moods.map(m => Object.assign({}, m, sel(s.mood === m.key), {
+        fg: 'var(--ink-900)', pick: () => this.setState({ mood: m.key, step: 2 })
+      })),
+      energyDots: [1, 2, 3, 4, 5].map(i => Object.assign({
+        ar: ['منخفضة جدًا', 'منخفضة', 'متوسطة', 'جيدة', 'عالية'][i - 1],
+        en: 'level ' + i, h: (6 + i * 5) + 'px',
+        bar: s.energy === i ? 'var(--purple-500)' : 'var(--purple-200)',
+        pick: () => this.setState({ energy: i, step: 3 })
+      }, sel(s.energy === i))),
+      stressDots: [1, 2, 3, 4, 5].map(i => Object.assign({
+        ar: ['هادئ تمامًا', 'قليل', 'متوسط', 'مرتفع', 'مرتفع جدًا'][i - 1],
+        en: 'level ' + i, h: (6 + i * 5) + 'px',
+        bar: s.stress === i ? 'var(--rose-500)' : 'var(--rose-200)',
+        pick: () => this.setState({ stress: i, step: 4 })
+      }, sel(s.stress === i))),
+      needOptions: this.needs.map(n => Object.assign({}, n, sel(s.need === n.key), {
+        pick: () => this.setState({ need: n.key, screen: 'suggest' })
+      })),
+
+      arrivalLine: 'تصِل اليوم كـ' + ' ' + md.ar + '، وطاقتك ' + (s.energy <= 2 ? 'منخفضة' : 'متوسطة') + '.',
+      arrivalEn: 'You are arriving ' + md.en.toLowerCase() + ', with ' + (s.energy <= 2 ? 'low' : 'moderate') + ' energy. Here is one small thing that fits.',
+      sugAr: sug.ar, sugEn: sug.en, sugWhy: sug.why, sugMinAr: sug.minAr, sugMinEn: sug.minEn,
+      startFirstBreath: this.startSuggested, startSuggested: this.startSuggested,
+
+      cycleLabel: 'دورة ' + this.ar(s.cycle) + ' / ' + this.ar(s.cycleTarget),
+      orbScale: cur.scale, orbDur: cur.sec + 's',
+      phaseAr: cur.ar, phaseEn: cur.en, secsAr: this.ar(s.secs),
+      breathNameAr: this.breathMeta(s.breathType).ar, breathNameEn: this.breathMeta(s.breathType).en,
+      exitBreath: () => { this.stopBreath(); this.setState({ screen: s.firstDone ? 'home' : 'reward', panic: false }); },
+
+      rewardTitleAr: s.firstDone ? 'أنت هنا. هذا يكفي.' : 'أنت هنا. هذا يكفي.',
+      rewardTitleEn: 'You stayed with it. That is the whole thing.',
+      rewardBadgeAr: 'أول نَفَس', rewardBadgeEn: 'First Breath · achievement',
+      rewardPointsAr: '+٢٠ نقطة نَفَس',
+
+      compCalm: md.comp === 'calm', compFocused: md.comp === 'focused', compSleepy: md.comp === 'sleepy',
+      compTearful: md.comp === 'tearful', compMellow: md.comp === 'mellow',
+      statusAr: 'تصِل الآن كـ ' + md.ar,
+      statusEn: 'Arriving ' + md.en.toLowerCase() + ' · tap to check in again',
+      statusChips: [
+        { en: 'energy', ar: this.ar(s.energy) + ' / ٥', bg: 'var(--purple-50)', fg: 'var(--purple-700)' },
+        { en: 'stress', ar: this.ar(s.stress) + ' / ٥', bg: 'var(--rose-50)', fg: 'var(--rose-700)' },
+        { en: 'burnout signal', ar: s.stress >= 4 ? 'يستحق انتباهًا' : 'مستقرّ', bg: 'var(--blue-50)', fg: 'var(--blue-700)' }
+      ],
+      progressVisible: this.props.showProgress !== false,
+      streakAr: this.ar(s.streak) + ' أيام متصلة',
+      streakEn: 'Check-in streak · never a failure if it breaks',
+      pointsAr: this.ar(s.points),
+      stageAr: 'مرحلتك: ' + st.ar, stageEn: st.en,
+      stageProgress: Math.min(100, Math.round(((s.points - st.from) / (st.next - st.from)) * 100)) + '%',
+      weekBars: this.trendData.slice(7).map(d => ({ h: (18 + d.v * 9) + 'px', bg: this.moodColor(d.m) })),
+      quickActions: [
+        { ar: 'فحص سريع', en: 'Check in', bg: 'var(--purple-50)', go: () => this.setState({ screen: 'checkin', step: 1 }) },
+        { ar: 'تنفّس', en: 'Breathe', bg: 'var(--blue-50)', go: () => this.runBreath('478', 4, false) },
+        { ar: 'دفتر', en: 'Journal', bg: 'var(--rose-50)', go: () => this.go('journal') },
+        { ar: 'تمارين', en: 'Practices', bg: 'var(--lemon-100)', go: () => this.go('practice') }
+      ],
+      showAccountPrompt: s.accountPrompt,
+      dismissAccount: () => this.setState({ accountPrompt: false }),
+
+      rangeTabs: [
+        { key: 'week', ar: 'أسبوع' }, { key: 'month', ar: 'شهر' }, { key: 'all', ar: 'الكل' }
+      ].map(t => Object.assign({}, t, chip(s.range === t.key), { go: () => this.setState({ range: t.key }) })),
+      trendBars: this.trendData.map(d => ({ h: (22 + d.v * 19) + 'px', bg: this.moodColor(d.m), d: d.d })),
+      legend: [
+        { ar: 'هادئ', bg: this.moodColor('calm') }, { ar: 'مُركّز', bg: this.moodColor('focused') },
+        { ar: 'متعب', bg: this.moodColor('tired') }, { ar: 'مُثقَل', bg: this.moodColor('overwhelmed') }
+      ],
+      trendStats: [
+        { val: '٢٬٨', ar: 'متوسط الطاقة', en: 'Average energy', bg: 'var(--purple-50)', fg: 'var(--purple-700)' },
+        { val: '٣٬٤', ar: 'متوسط التوتر', en: 'Average stress', bg: 'var(--rose-50)', fg: 'var(--rose-700)' }
+      ],
+
+      breathList: this.breathings.map(b => Object.assign({}, b, { go: () => this.runBreath(b.key, 4, false) })),
+      groundList: this.grounds.map(g => Object.assign({}, g, {
+        go: () => this.setState({ screen: 'grounding', gStep: 0, gCount: 0, gDone: false, panic: false })
+      })),
+      gameList: this.games,
+
+      gActive: !s.gDone, gDone: s.gDone,
+      gNumAr: this.gSteps[s.gStep].numAr, gAr: this.gSteps[s.gStep].ar, gEn: this.gSteps[s.gStep].en,
+      gDots: Array.from({ length: this.gSteps[s.gStep].n }, (_, i) => ({
+        bg: i < s.gCount ? 'var(--purple-500)' : '#fff',
+        ring: i < s.gCount ? 'none' : 'inset 0 0 0 2px var(--purple-200)',
+        tap: () => {
+          const step = this.gSteps[this.state.gStep];
+          const next = Math.min(step.n, this.state.gCount + 1);
+          this.setState({ gCount: next });
+          if (next < step.n) return;
+          if (this.state.gStep + 1 >= this.gSteps.length) {
+            this.setState(prev => ({ gDone: true, points: prev.points + 15 }));
+          } else {
+            setTimeout(() => this.setState(prev => ({ gStep: prev.gStep + 1, gCount: 0 })), 480);
+          }
+        }
+      })),
+
+      journalWriting: s.journalMode === 'writing', journalIdle: s.journalMode === 'idle',
+      newEntry: () => this.setState({ journalMode: 'writing', draft: '', prompt: null }),
+      cancelEntry: () => this.setState({ journalMode: 'idle', draft: '', prompt: null }),
+      prompts: this.promptLib.map(p => Object.assign({}, p, chip(s.prompt && s.prompt.ar === p.ar), {
+        pick: () => this.setState({ prompt: s.prompt && s.prompt.ar === p.ar ? null : p })
+      })),
+      promptChosen: !!s.prompt, promptAr: s.prompt ? s.prompt.full : '',
+      draft: s.draft,
+      setDraft: e => this.setState({ draft: e.target.value }),
+      saveEntry: () => {
+        const text = s.draft.trim();
+        if (!text) { this.setState({ journalMode: 'idle' }); return; }
+        this.setState(prev => ({
+          entries: [{ id: Date.now(), date: 'الآن · just now', prompt: prev.prompt ? prev.prompt.full : null, text }].concat(prev.entries),
+          journalMode: 'idle', draft: '', prompt: null, points: prev.points + 10
+        }));
+      },
+      entries: s.entries.map(e => ({
+        date: e.date, text: e.text, prompt: e.prompt, hasPrompt: !!e.prompt,
+        remove: () => this.setState(prev => ({ entries: prev.entries.filter(x => x.id !== e.id) }))
+      })),
+
+      hotlines: this.hotlineData,
+      filterGroups: [
+        { label: 'البلد · country', chips: [{ k: 'sa', ar: 'السعودية' }, { k: 'eg', ar: 'مصر' }, { k: 'jo', ar: 'الأردن' }, { k: 'ae', ar: 'الإمارات' }].map(c => Object.assign({ ar: c.ar }, chip(s.filters.country === c.k), { go: () => this.setState({ filters: Object.assign({}, s.filters, { country: c.k }) }) })) },
+        { label: 'نوع الدعم · support type', chips: [{ k: 'all', ar: 'الكل' }, { k: 'psy', ar: 'أخصائي نفسي' }, { k: 'psyc', ar: 'طبيب نفسي' }, { k: 'ngo', ar: 'جمعية' }, { k: 'peer', ar: 'دعم الأقران' }].map(c => Object.assign({ ar: c.ar }, chip(s.filters.type === c.k), { go: () => this.setState({ filters: Object.assign({}, s.filters, { type: c.k }) }) })) },
+        { label: 'الميزانية · budget', chips: [{ k: 'free', ar: 'مجاني' }, { k: 'student', ar: 'خصم طلابي' }, { k: 'u25', ar: 'تحت ٢٥$' }, { k: 'u50', ar: 'تحت ٥٠$' }].map(c => Object.assign({ ar: c.ar }, chip(s.filters.budget === c.k), { go: () => this.setState({ filters: Object.assign({}, s.filters, { budget: c.k }) }) })) }
+      ],
+      providers: this.providerData.map(p => Object.assign({}, p, {
+        priceBg: p.band === 'free' ? 'var(--blue-50)' : p.band === 'student' ? 'var(--lemon-100)' : 'var(--purple-50)',
+        priceFg: p.band === 'free' ? 'var(--blue-700)' : p.band === 'student' ? 'var(--ink-700)' : 'var(--purple-700)'
+      })),
+
+      settingRows: [
+        { k: 'sound', ar: 'صوت هادئ في التمارين', en: 'Gentle sound during practices' },
+        { k: 'reminder', ar: 'تذكير يومي لطيف', en: 'Daily reminder - off by default, never nagging' },
+        { k: 'motion', ar: 'حركة الخلفية', en: 'Ambient motion - turn off for reduced motion' },
+        { k: 'anon', ar: 'البقاء مجهولًا', en: 'Stay anonymous - no email, no profile' }
+      ].map(r => ({
+        ar: r.ar, en: r.en,
+        trackBg: s.toggles[r.k] ? 'var(--purple-500)' : 'var(--ink-100)',
+        knob: s.toggles[r.k] ? '25px' : '3px',
+        toggle: () => this.setState({ toggles: Object.assign({}, s.toggles, { [r.k]: !s.toggles[r.k] }) })
+      })),
+      wipe: () => { this.stopBreath(); this.setState({ entries: [], points: 0, streak: 0, screen: 'landing', panic: false, accountPrompt: true }); },
+
+      navTabs: [
+        { k: 'home', ar: 'الآن', en: 'NOW', target: 'home' },
+        { k: 'practice', ar: 'تمارين', en: 'PRACTICE', target: 'practice' },
+        { k: 'journal', ar: 'دفترك', en: 'JOURNAL', target: 'journal' }
+      ].map(t => ({
+        ar: t.ar, en: t.en,
+        bg: sc === t.target || (t.k === 'home' && sc === 'trends') || (t.k === 'practice' && sc === 'grounding') ? 'var(--purple-600)' : 'transparent',
+        fg: sc === t.target || (t.k === 'home' && sc === 'trends') || (t.k === 'practice' && sc === 'grounding') ? '#fff' : 'var(--ink-500)',
+        go: () => this.go(t.target)
+      })),
+
+      panicAr: 'أنت في أمان. تنفّس معي.',
+      panicEn: 'You are safe. Breathe with me - nothing else matters for the next minute.',
+      openPanic: () => this.runBreath('panic', 20, true),
+      closePanic: () => { this.stopBreath(); this.setState({ panic: false }); },
+      goGroundingFromPanic: () => { this.stopBreath(); this.setState({ panic: false, screen: 'grounding', gStep: 0, gCount: 0, gDone: false }); },
+      goSupportFromPanic: () => { this.stopBreath(); this.setState({ panic: false, screen: 'support' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
